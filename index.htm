@@ -1,0 +1,63 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Entity/System matrix</title>
+    <meta name="description" content="Entity/System matrix">
+    <meta name="author" content="Meh">
+
+    <link rel="stylesheet" href="css/styles.css?v=1.0">
+
+  </head>
+
+  <body>
+
+    
+    <div id="helpText">
+      <p>
+        This is a basic tool which can import a text file with data and break it down into a 
+        navigationable structure with entities and attributes similar to a folder hierarchy. 
+        The intention is to visualize a grouping of data fields from multiple sources showing how 
+        they can represent the same or related elements. 
+      </p>
+      <p>
+        To create such a hierarchy, you need a text file where each line represents a dataset consisting of at least four tab-separated columns. 
+        The fields required are source name, source field, entity path and entity attribute. 
+      </p>
+      <p>
+        <strong>Source name</strong> and <strong>source fieldname</strong> are simply the name of a source, eg. SAP and the name used in the source to describe a field, eg. PLANT_NAME. <br/>
+        <strong>Entity path</strong> is the path to an entity in the hierarchy, listing all preceding parent entities separated by a dot. The path <em>Factory.Sweden.Volvo.Airplanes.Gripen</em> 
+        results in an expandable structure where Factory is the root node containing the subsequent nodes with Gripen as the last one. <br />
+        An <strong>entity attribute</strong> with the value Gripen.Engine will then create an attribute under the Gripen entity called engine, with references to the source name and fieldname.
+      </p>
+
+      <p>The configuration box on the right can be used to specify columns and path/attribute separator. </p>
+    </div>
+    <div id="config">
+      
+      <div class="ctr">
+        <span id="help">?</span>
+      </div>
+      <div class="ctr">
+        <button id="fileButton" onclick="openFile(dispFile)">Open a file</button>
+      </div>
+
+      <h4>Configure columns</h4>
+      <form id="configColumns">
+        <span><span><label for="srcName">Source key name</label> <input id="srcName" type="number" minlength="1" required pattern=".{1,}" class="cfgInMin" value="1" /></span>
+        <span><label for="srcSrc">Source name</label> <input id="srcSrc" type="number" class="cfgInMin" minlength="1" required pattern=".{1,}" value="4" /></span>
+        <span><label for="strPath">Entity path</label> <input id="strPath" type="number" class="cfgInMin" minlength="1" required pattern=".{1,}" value="8" /></span>
+        <span><label for="strAlias">Alias field</label> <input id="strAlias" type="number" class="cfgInMin" minlength="1" required pattern=".{1,}" value="9" /></span>
+        <span><label for="separator">Separator char</label> <input id="separator" type="text" minlength="1" maxlength="1" required pattern=".{1,}" class="cfgInMin" value="." /></span>
+    </form>
+    </div>
+
+    <div id="tree"></div>
+    <pre id="contents"></pre>
+    <pre id="raw"></pre>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>

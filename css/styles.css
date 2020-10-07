@@ -1,0 +1,164 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+body{
+  background-color: #ccc;
+}
+
+#config{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #fff;
+  padding: 10px;
+  
+  width: 150px;
+  border: 1px solid #000;
+  border-radius: 5px;
+}
+
+
+#config #fileButton{  
+  background-color: #666;
+  color: #fff;
+}
+
+#config h4{
+  text-align: center;
+  margin-top: 0px;
+}
+
+#configColumns span{
+  position: relative;
+  display: block;
+  margin-top: 5px;
+}
+
+#config label{
+  width: 75%;
+  display: inline-block;
+}
+
+#config input.cfgInMin{
+  width: 30px;
+  text-align: center;
+  position: absolute;
+  right:0px;
+}
+
+#help{
+  width: 25px;
+  height: 25px;
+  display:inline-block;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 20px;
+  color: #fff;
+  background-color: #00f;
+  border: 3px solid #fff;
+  border-radius: 100%;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+#helpText{
+  position:absolute;
+  z-index: 1000;
+  background-color: #fff;
+  padding: 20px;
+  width: 50%;
+  right: 200px;
+  top:10px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  opacity: 0;
+  transition: opacity 200ms ease-in-out;
+}
+
+#helpText.help--show{
+  opacity:1;
+}
+
+#help:hover{
+  cursor: pointer;
+}
+  
+li.collapsibleListOpen{
+  /*list-style-image : url('../img/btn_open.png');*/
+  cursor           : pointer;
+}
+
+li.collapsibleListOpen > ul {
+  display: block;
+}
+
+li.collapsibleListClosed li.entity li.node{
+  cursor           : pointer;
+}
+
+li.collapsibleListClosed ul {
+  display: none;
+}
+
+pre#contents ul{
+  /*display:none;*/
+  padding-left: 20px;
+}
+
+pre#contents > ul {
+  display: block;
+  cursor           : pointer;
+}
+
+li.entity{
+  background-color: #ccc;
+  border: 1px solid #666;
+  font-size: 14px;
+  padding: 5px 25px;
+  list-style: none;
+  font-weight: bold;
+
+  background-image: url("../img/entity.png");
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-size: 20px;
+}
+
+li.entity:hover{
+  background-color: #aaa;
+}
+
+li.entity ul {
+  margin-top: 5px;
+}
+
+li.node{
+  font-size: 14px;
+  background-color: #666;
+  color: #ccc;
+  padding: 5px 25px;
+  list-style: none;
+
+  background-image: url("../img/node.png");
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-size: 20px;
+}
+
+li.node:hover{
+  background-color: #999;
+}
+
+li.nodeRef{
+  list-style: none;
+  background-color: #333;
+  color: #ccc;
+  padding: 4px;
+  font-style: italic;
+}
+
+.ctr{
+  text-align: center;
+}
