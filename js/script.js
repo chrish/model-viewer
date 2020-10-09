@@ -15,6 +15,18 @@ function getConfigItem(itemId){
     var el = document.getElementById(itemId).value;
 }
 
+function getLastModDate(){
+    fetch("js/date.json") 
+    .then(data=> data.json())
+    .then(parsedData => {
+        console.log("Date set");
+        document.getElementById("lastMod").innerHTML="<h5>Last modified:</h5>" + parsedData.date;
+        return parsedData.date;
+    })
+    .catch(function() {
+        console.log("Error fetching date.json...");
+    });
+}
 
 // Add entity if parent has more than one in the path. 
 // If parent has one entity, add attribute as value 
@@ -262,3 +274,5 @@ document.getElementById("enableContext").addEventListener(
     },
     false
 );
+
+getLastModDate();
