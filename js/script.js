@@ -1,5 +1,6 @@
 var file="rawfile.txt";
 data = {}
+rawData=[]
 
 //Configure column default values
 var C_SRC_NAME = 0;
@@ -111,9 +112,10 @@ function objToHtmlList(obj) {
     }
 }
 
-function dispFile(contents) {
+
+function renderStructure(){
     data = {}
-    contents.split('\r\n').forEach(element => {
+    rawData.forEach(element => {
         var kp = element.split('\t');
 
         // Field indexes are zero-indexed; correct this
@@ -169,8 +171,15 @@ function dispFile(contents) {
     document.getElementById('contents').innerHTML = "";
     document.getElementById('contents').appendChild(lst);
     console.log(data);
-    //CollapsibleLists.apply();
-    //document.getElementById('raw').innerHTML=JSON.stringify(data);
+}
+
+function grabRawData(contents) {
+    
+    contents.split('\r\n').forEach(element => {
+        rawData.push(element);
+    });
+
+    renderStructure();
   }
   function clickElem(elem) {
       var eventMouse = document.createEvent("MouseEvents")
@@ -223,7 +232,6 @@ function dispFile(contents) {
 // Listestuff
 
 document.addEventListener('click', function (event) {
-	// If the clicked element doesn't have the right selector, bail
 	if (!event.target.matches('li')) return;
 
     console.log(event.target);
@@ -245,4 +253,12 @@ document.getElementById("help").addEventListener(
     document.getElementById("helpText").classList.toggle('help--show')
   }, 
   false
+);
+
+document.getElementById("enableContext").addEventListener(
+    "click",
+    function(){
+        renderStructure();
+    },
+    false
 );
