@@ -20,7 +20,7 @@ function getLastModDate(){
     .then(data=> data.json())
     .then(parsedData => {
         console.log("Date set");
-        document.getElementById("lastMod").innerHTML="<h5>Last modified:</h5>" + parsedData.date;
+        document.getElementById("lastMod").innerHTML="<h5>Viewer modified:</h5>" + parsedData.date;
         return parsedData.date;
     })
     .catch(function() {
