@@ -4,9 +4,11 @@ data = {}
 //Configure column default values
 var C_SRC_NAME = 0;
 var C_SRC_SRC = 3;
+var C_CONTEXT = 6;
 var C_STR_PATH = 7;
 var C_STR_ALIAS = 8;
 var C_SEPARATOR = ".";
+var C_ENABLE_CONTEXT = true;
 
 function getConfigItem(itemId){
     var el = document.getElementById(itemId).value;
@@ -110,6 +112,7 @@ function objToHtmlList(obj) {
 }
 
 function dispFile(contents) {
+    data = {}
     contents.split('\r\n').forEach(element => {
         var kp = element.split('\t');
 
@@ -126,9 +129,14 @@ function dispFile(contents) {
         if (document.getElementById("strAlias").checkValidity()){
             C_STR_ALIAS = document.getElementById("strAlias").value-1;
         }
+        if (document.getElementById("strAlias").checkValidity()){
+            C_CONTEXT = document.getElementById("context").value-1;
+        }
         if (document.getElementById("separator").checkValidity()){
             C_SEPARATOR = document.getElementById("separator").value;
         }
+
+        C_ENABLE_CONTEXT = document.getElementById("enableContext").checked;
 
         // For each row, split and generate object
         if (kp.length > 8){
@@ -136,11 +144,19 @@ function dispFile(contents) {
             var src_src = kp[C_SRC_SRC];
             var str_path = kp[C_STR_PATH];
             var str_alias = kp[C_STR_ALIAS];
+            var context = kp[C_CONTEXT];
             
             var srcInfo = {"src": src_src, "srcName": src_name}
 
             var kkp = str_alias.split(C_SEPARATOR);
-            var path = (str_path+"."+kkp[1]).split(C_SEPARATOR);
+            
+            var path = (str_path+"."+kkp[1]);
+            if (C_ENABLE_CONTEXT){
+                path = (context + "." + str_path+"."+kkp[1]);
+            }
+
+            path=path.split(C_SEPARATOR);
+            
             checkPathForMember(data, path, str_alias, srcInfo);
         }
     });
